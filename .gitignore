@@ -1,0 +1,13 @@
+*.mwb.bak
+build/
+classes/
+*.iml
+*.ipr
+*.iws
+out/
+.idea
+.classpath
+.project
+.settings/
+bin/
+~      
