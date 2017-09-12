@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uff.dac.t1.controleprojetos.modelo;
+package br.uff.dac.t1.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
  * @author felipe
  */
 
@@ -79,5 +78,5 @@ public class Pessoa implements Serializable {
     public String toString() {
         return "Pessoa{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + '}';
     }
-        
+
 }

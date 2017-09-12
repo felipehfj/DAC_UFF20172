@@ -3,29 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uff.dac.t1.controleprojetos.modelo;
+package br.uff.dac.t1.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 /**
- *
  * @author felipe
  */
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa implements Serializable {
+public class Projeto implements Serializable {
     @Id
     private int id;
     private String nome;
-    private String cpf;
+    private Date inicio;
+    private Date fim;
 
-    public Pessoa() {
+    public Projeto() {
+    }
+
+    public Projeto(int id, String nome, Date inicio, Date fim) {
+        this.id = id;
+        this.nome = nome;
+        this.inicio = inicio;
+        this.fim = fim;
     }
 
     public int getId() {
@@ -44,19 +48,29 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Date getInicio() {
+        return inicio;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFim() {
+        return fim;
+    }
+
+    public void setFim(Date fim) {
+        this.fim = fim;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.nome);
-        hash = 47 * hash + Objects.hashCode(this.cpf);
+        int hash = 3;
+        hash = 41 * hash + this.id;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.inicio);
+        hash = 41 * hash + Objects.hashCode(this.fim);
         return hash;
     }
 
@@ -71,13 +85,13 @@ public class Pessoa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final Projeto other = (Projeto) obj;
         return this.id == other.id;
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + '}';
+        return "Projeto{" + "id=" + id + ", nome=" + nome + ", inicio=" + inicio + ", fim=" + fim + '}';
     }
-        
+
 }

@@ -3,29 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uff.dac.t1.controleprojetos.modelo;
+package br.uff.dac.t1.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
  * @author felipe
  */
-
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa implements Serializable {
+public class Disciplina implements Serializable {
     @Id
     private int id;
     private String nome;
-    private String cpf;
 
-    public Pessoa() {
+    public Disciplina() {
+    }
+
+    public Disciplina(int id, String nome) {
+        this.id = id;
+        this.nome = nome;
     }
 
     public int getId() {
@@ -44,19 +43,11 @@ public class Pessoa implements Serializable {
         this.nome = nome;
     }
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.nome);
-        hash = 47 * hash + Objects.hashCode(this.cpf);
+        int hash = 5;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -71,13 +62,13 @@ public class Pessoa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
+        final Disciplina other = (Disciplina) obj;
         return this.id == other.id;
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + '}';
+        return "Disciplina{" + "id=" + id + ", nome=" + nome + '}';
     }
-        
+
 }

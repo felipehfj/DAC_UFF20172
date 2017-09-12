@@ -3,19 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uff.dac.t1.controleprojetos.modelo;
+package br.uff.dac.t1.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
  * @author felipe
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Aluno extends Pessoa implements Serializable  {
+public class Aluno extends Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -33,7 +32,7 @@ public class Aluno extends Pessoa implements Serializable  {
         this.cr = cr;
         this.matricula = matricula;
     }
-        
+
     public ECurso getCurso() {
         return curso;
     }
@@ -89,6 +88,6 @@ public class Aluno extends Pessoa implements Serializable  {
     @Override
     public String toString() {
         return "Aluno{" + "id=" + id + ", curso=" + curso + ", cr=" + cr + ", matricula=" + matricula + '}';
-    }   
-    
+    }
+
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uff.dac.t1.controleprojetos.modelo;
+package br.uff.dac.t1.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,50 +13,36 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- *
  * @author felipe
  */
-
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Pessoa implements Serializable {
+public class Professor extends Pessoa implements Serializable {
     @Id
     private int id;
-    private String nome;
-    private String cpf;
+    private String siape;
 
-    public Pessoa() {
+    public Professor() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public Professor(int id, String siape) {
         this.id = id;
+        this.siape = siape;
     }
 
-    public String getNome() {
-        return nome;
+    public String getSiape() {
+        return siape;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setSiape(String siape) {
+        this.siape = siape;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.nome);
-        hash = 47 * hash + Objects.hashCode(this.cpf);
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        hash = 53 * hash + Objects.hashCode(this.siape);
         return hash;
     }
 
@@ -71,13 +57,16 @@ public class Pessoa implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Pessoa other = (Pessoa) obj;
-        return this.id == other.id;
+        final Professor other = (Professor) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return Objects.equals(this.siape, other.siape);
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + '}';
+        return "Professor{" + "id=" + id + ", siape=" + siape + '}';
     }
-        
+
 }
