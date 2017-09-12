@@ -4,6 +4,8 @@ import br.uff.dac.t1.controleprojetos.modelo.Aluno;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -12,7 +14,8 @@ import java.util.List;
 public class AlunoRepository {
 
     @PersistenceContext
-    EntityManager em;
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("projetos");
+    EntityManager em = emf.createEntityManager();
 
     @Transactional
     public List<Aluno> getAll(){

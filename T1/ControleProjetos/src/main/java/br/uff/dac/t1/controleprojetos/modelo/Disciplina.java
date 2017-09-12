@@ -5,6 +5,8 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,7 +14,9 @@ import java.util.Objects;
  *
  * @author felipe
  */
+@Entity
 public class Disciplina implements Serializable{
+    @Id
     private int id;
     private String nome;
 

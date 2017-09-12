@@ -5,6 +5,8 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -13,7 +15,9 @@ import java.util.Objects;
  *
  * @author felipe
  */
+@Entity
 public class Titulacao implements Serializable{
+    @Id
     private int id;
     private ETitulo titulo;
     private String instituicao;

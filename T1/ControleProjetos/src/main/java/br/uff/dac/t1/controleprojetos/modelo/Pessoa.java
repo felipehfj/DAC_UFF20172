@@ -5,6 +5,10 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,7 +16,11 @@ import java.util.Objects;
  *
  * @author felipe
  */
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements Serializable {
+    @Id
     private int id;
     private String nome;
     private String cpf;
