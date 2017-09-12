@@ -12,11 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "alunoservlet")
+@WebServlet(name = "alunoservlet", urlPatterns = {"/alunoservlet"})
 public class AlunoServlet extends HttpServlet {
 
     @Inject
     private AlunoRepository alunoRepository;
+
+    public AlunoServlet() {
+    }
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,6 +36,7 @@ public class AlunoServlet extends HttpServlet {
         writer.append("<HEAD>");
         writer.append("</HEAD>");
         writer.append("<BODY>");
+        writer.append("<h1>Alunos:</h1>");
         for (Aluno aluno: alunoRepository.getAll()) {
             writer.append("<P>");
             writer.append(aluno.getNome());
