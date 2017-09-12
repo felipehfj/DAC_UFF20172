@@ -15,6 +15,7 @@ import java.util.Objects;
  *
  * @author felipe
  */
+
 @Entity
 public class Titulacao implements Serializable{
     @Id

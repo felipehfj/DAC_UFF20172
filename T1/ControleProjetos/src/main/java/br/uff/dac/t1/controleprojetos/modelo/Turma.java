@@ -14,6 +14,7 @@ import java.util.Objects;
  *
  * @author felipe
  */
+
 @Entity
 public class Turma implements Serializable{
     @Id

@@ -14,6 +14,7 @@ import java.util.Objects;
  *
  * @author felipe
  */
+
 @Entity
 public class Disciplina implements Serializable{
     @Id
