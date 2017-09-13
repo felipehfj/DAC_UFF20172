@@ -1,35 +1,63 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
-/**
- *
- * @author felipe
- */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Professor extends Pessoa implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String siape;
 
+    @OneToMany(mappedBy = "professor")
+    private Set<Titulacao> titulacoes;
+
+    @OneToMany(mappedBy = "professor")
+    private Set<Disciplina> disciplinas;
+
+    @OneToMany(mappedBy = "professor")
+    private Set<Projeto> projetos;
+
     public Professor() {
+
     }
 
-    public Professor(int id, String siape) {
-        this.id = id;
+    public Professor(String siape, Set<Titulacao> titulacoes, Set<Disciplina> disciplinas, Set<Projeto> projetos) {
         this.siape = siape;
-    }   
+        this.titulacoes = titulacoes;
+        this.disciplinas = disciplinas;
+        this.projetos = projetos;
+    }
+
+    public Set<Titulacao> getTitulacoes() {
+        return titulacoes;
+    }
+
+    public void setTitulacoes(Set<Titulacao> titulacoes) {
+        this.titulacoes = titulacoes;
+    }
+
+    public Set<Disciplina> getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(Set<Disciplina> disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public Set<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(Set<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 
     public String getSiape() {
         return siape;

@@ -5,8 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -17,16 +16,42 @@ import java.util.Objects;
 
 @Entity
 public class Disciplina implements Serializable{
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String nome;
+
+    @ManyToOne
+    private Professor professor;
+
+    @OneToOne
+    private Turma turma;
 
     public Disciplina() {
     }
 
-    public Disciplina(int id, String nome) {
-        this.id = id;
+    public Disciplina(String nome, Professor professor, Turma turma) {
         this.nome = nome;
+        this.professor = professor;
+        this.turma = turma;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
     public int getId() {

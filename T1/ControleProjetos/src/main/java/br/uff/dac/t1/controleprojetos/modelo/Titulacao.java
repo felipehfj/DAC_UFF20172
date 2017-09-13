@@ -5,8 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -18,22 +17,36 @@ import java.util.Objects;
 
 @Entity
 public class Titulacao implements Serializable{
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private ETitulo titulo;
     private String instituicao;
     private String area;
-    private Date ano;
+    private String ano;
+
+    @ManyToOne
+    private Professor professor;
 
     public Titulacao() {
     }
 
-    public Titulacao(int id, ETitulo titulo, String instituicao, String area, Date ano) {
-        this.id = id;
+    public Titulacao(ETitulo titulo, String instituicao, String area, String ano, Professor professor) {
         this.titulo = titulo;
         this.instituicao = instituicao;
         this.area = area;
         this.ano = ano;
+        this.professor = professor;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public int getId() {
@@ -68,11 +81,11 @@ public class Titulacao implements Serializable{
         this.area = area;
     }
 
-    public Date getAno() {
+    public String getAno() {
         return ano;
     }
 
-    public void setAno(Date ano) {
+    public void setAno(String ano) {
         this.ano = ano;
     }
 

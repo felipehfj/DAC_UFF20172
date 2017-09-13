@@ -21,7 +21,7 @@ public class AlunoRepository {
 
     @Transactional
     public List<Aluno> getAll(){
-        return em.createQuery("SELECT Aluno a from Aluno").getResultList();
+        return em.createQuery("SELECT a from Aluno a").getResultList();
     }
 
     public String salvar(Aluno aluno){

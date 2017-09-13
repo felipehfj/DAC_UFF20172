@@ -8,7 +8,11 @@
 
     <h:body>
         <h:form>
-            Nome: <h:inputText value="#{aluno.nome}" />
+            Nome: <h:inputText value="#{aluno.nome}" /> <br/>
+            Matricula: <h:inputText value="#{aluno.matricula}" /> <br/>
+            Curso:  <h:selectOneMenu value="#{aluno.curso}" >
+                        <f:selectItems value="#{aluno.cursos}" var="curso" itemValue="#{curso}" itemLabel="#{curso.nome}" />
+                    </h:selectOneMenu> <br/>
             <h:commandButton value="Submit" action="#{alunoRepository.salvar(aluno)}" />
         </h:form>
     </h:body>

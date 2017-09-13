@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uff.dac.t1.controleprojetos.modelo;
 
 import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
-/**
- *
- * @author felipe
- */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @ManagedBean
@@ -24,20 +15,34 @@ public class Aluno extends Pessoa implements Serializable  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(nullable = false)
     private ECurso curso;
-    private float cr;
+    @Column(nullable = false)
     private String matricula;
+
+    private Double cr;
+
+    @ManyToMany
+    private Set<Projeto> projetos;
 
     public Aluno() {
     }
 
-    public Aluno(int id, ECurso curso, float cr, String matricula) {
-        this.id = id;
+    public Aluno(ECurso curso, String matricula, Double cr, Set<Projeto> projetos) {
         this.curso = curso;
-        this.cr = cr;
         this.matricula = matricula;
+        this.cr = cr;
+        this.projetos = projetos;
     }
-        
+
+    public Set<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(Set<Projeto> projetos) {
+        this.projetos = projetos;
+    }
+
     public ECurso getCurso() {
         return curso;
     }
@@ -46,11 +51,11 @@ public class Aluno extends Pessoa implements Serializable  {
         this.curso = curso;
     }
 
-    public float getCr() {
+    public Double getCr() {
         return cr;
     }
 
-    public void setCr(float cr) {
+    public void setCr(Double cr) {
         this.cr = cr;
     }
 
@@ -62,14 +67,18 @@ public class Aluno extends Pessoa implements Serializable  {
         this.matricula = matricula;
     }
 
+    public ECurso[] getCursos() {
+        return ECurso.values();
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 11 * hash + this.id;
-        hash = 11 * hash + Objects.hashCode(this.curso);
-        hash = 11 * hash + Float.floatToIntBits(this.cr);
-        hash = 11 * hash + Objects.hashCode(this.matricula);
-        return hash;
+        int result = super.hashCode();
+        result = 31 * result + id;
+        result = 31 * result + (curso != null ? curso.hashCode() : 0);
+        result = 31 * result + (matricula != null ? matricula.hashCode() : 0);
+        result = 31 * result + (cr != null ? cr.hashCode() : 0);
+        return result;
     }
 
     @Override

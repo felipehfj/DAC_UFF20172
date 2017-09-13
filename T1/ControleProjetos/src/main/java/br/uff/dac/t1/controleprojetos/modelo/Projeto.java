@@ -5,11 +5,11 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  *
@@ -19,19 +19,43 @@ import java.util.Objects;
 @Entity
 public class Projeto implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String nome;
     private Date inicio;
     private Date fim;
 
+    @ManyToOne
+    private Professor professor;
+
+    @ManyToMany
+    private Set<Aluno> alunos;
+
     public Projeto() {
     }
 
-    public Projeto(int id, String nome, Date inicio, Date fim) {
-        this.id = id;
+    public Projeto(String nome, Date inicio, Date fim, Professor professor, Set<Aluno> alunos) {
         this.nome = nome;
         this.inicio = inicio;
         this.fim = fim;
+        this.professor = professor;
+        this.alunos = alunos;
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
+    public Set<Aluno> getAlunos() {
+        return alunos;
+    }
+
+    public void setAlunos(Set<Aluno> alunos) {
+        this.alunos = alunos;
     }
 
     public int getId() {

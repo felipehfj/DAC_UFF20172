@@ -5,8 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,21 +17,34 @@ import java.util.Objects;
 @Entity
 public class Turma implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String codigo;
     private String periodo;
     private ETurno turno;
     private String sala;
 
+    @OneToOne
+    private Disciplina disciplina;
+
     public Turma() {
     }
 
-    public Turma(int id, String codigo, String periodo, ETurno turno, String sala) {
-        this.id = id;
+    public Turma(String codigo, String periodo, ETurno turno, String sala, Disciplina disciplina) {
         this.codigo = codigo;
         this.periodo = periodo;
         this.turno = turno;
         this.sala = sala;
+        this.disciplina = disciplina;
+    }
+
+    public Disciplina getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(Disciplina disciplina) {
+        this.disciplina = disciplina;
     }
 
     public int getId() {
