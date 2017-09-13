@@ -53,6 +53,7 @@ public class Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 7;
