@@ -5,10 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -20,8 +17,11 @@ import java.util.Objects;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     private String nome;
     private String cpf;
 

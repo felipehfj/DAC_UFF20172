@@ -5,11 +5,7 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-
-    <h:body>
-        <h:form>
-            Nome: <h:inputText value="#{aluno.nome}" />
-            <h:commandButton value="Submit" action="#{alunoRepository.salvar(aluno)}" />
-        </h:form>
-    </h:body>
+<f:view>
+    Aluno #{aluno.nome} criado com sucesso!
+</f:view>
 </html>

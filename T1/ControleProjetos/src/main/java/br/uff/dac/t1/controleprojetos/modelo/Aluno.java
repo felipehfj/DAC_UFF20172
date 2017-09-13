@@ -5,6 +5,8 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,7 +17,9 @@ import java.util.Objects;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@ManagedBean
 public class Aluno extends Pessoa implements Serializable  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;

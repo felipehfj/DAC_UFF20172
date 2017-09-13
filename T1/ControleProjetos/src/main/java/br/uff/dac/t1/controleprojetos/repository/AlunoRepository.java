@@ -2,15 +2,14 @@ package br.uff.dac.t1.controleprojetos.repository;
 
 import br.uff.dac.t1.controleprojetos.modelo.Aluno;
 
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Named
+@ManagedBean
+@RequestScoped
 public class AlunoRepository {
 
     public AlunoRepository() {
@@ -24,4 +23,23 @@ public class AlunoRepository {
     public List<Aluno> getAll(){
         return em.createQuery("SELECT Aluno a from Aluno").getResultList();
     }
+
+    public String salvar(Aluno aluno){
+        EntityTransaction transaction = em.getTransaction();
+
+        try {
+
+            transaction.begin();
+            em.persist(aluno);
+            transaction.commit();
+
+            return "sucesso";
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+
+            return "erro";
+        }
+    }
+
 }
