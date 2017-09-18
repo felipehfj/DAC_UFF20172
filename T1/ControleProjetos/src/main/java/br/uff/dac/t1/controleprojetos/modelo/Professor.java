@@ -1,5 +1,6 @@
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,6 +8,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@ManagedBean
 public class Professor extends Pessoa implements Serializable {
 
     @Id

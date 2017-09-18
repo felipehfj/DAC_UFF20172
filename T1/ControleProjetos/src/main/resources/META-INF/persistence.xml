@@ -10,23 +10,23 @@
 
         <!-- entidade mapeada -->
         <class>br.uff.dac.t1.controleprojetos.modelo.Aluno</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Professor</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Disciplina</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Pessoa</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Titulacao</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Projeto</class>
+        <class>br.uff.dac.t1.controleprojetos.modelo.Turma</class>
 
         <properties>
             <!-- dados da conexao -->
-            <property name="javax.persistence.jdbc.driver"
-                      value="com.mysql.jdbc.Driver" />
-            <property name="javax.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost:3306/controleprojetos" />
-            <property name="javax.persistence.jdbc.user"
-                      value="root" />
-            <property name="javax.persistence.jdbc.password"
-                      value="root" />
-
-            <property name="hibernate.dialect"
-                      value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="javax.persistence.jdbc.driver"   value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url"      value="jdbc:mysql://localhost:3306/Projetos" />
+            <property name="javax.persistence.jdbc.user"     value="root" />
+            <property name="javax.persistence.jdbc.password" value="102415" />
+            <property name="hibernate.dialect"               value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql"              value="true" />
+            <property name="hibernate.format_sql"            value="true" />
+            <property name="hibernate.hbm2ddl.auto"          value="update"/>
 
         </properties>
     </persistence-unit>

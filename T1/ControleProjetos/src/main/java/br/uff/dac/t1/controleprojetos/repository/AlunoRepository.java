@@ -24,6 +24,10 @@ public class AlunoRepository {
         return em.createQuery("SELECT a from Aluno a").getResultList();
     }
 
+    public Aluno getAluno(Aluno aluno){
+        return em.find(Aluno.class, aluno);
+    }
+
     public String salvar(Aluno aluno){
         EntityTransaction transaction = em.getTransaction();
 
@@ -39,6 +43,21 @@ public class AlunoRepository {
             transaction.rollback();
 
             return "erro";
+        }
+    }
+
+    public String deletar(Aluno aluno){
+        EntityTransaction transaction = em.getTransaction();
+
+        try{
+            transaction.begin();
+            em.remove(aluno);
+            transaction.commit();
+            return "sucesso";
+        }catch (Exception e){
+            e.printStackTrace();
+            transaction.rollback();
+        return "erro";
         }
     }
 
