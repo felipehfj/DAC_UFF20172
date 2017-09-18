@@ -4,42 +4,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:ui="http://java.sun.com/jsf/facelets" >
 
     <h:body>
         <h:link value = "Home" outcome = "home.xhtml" />
 
         <h:form>
-            Nome: <h:inputText value="#{professor.nome}"/> <br/>
-            CPF: <h:inputText value="#{professor.cpf}"/> <br/>
-            SIAPE: <h:inputText value="#{professor.siape}"/> <br/>
-            <h:commandButton value="Submit" action="#{professorRepository.salvar(professor)}"/>
+            Nome: <h:inputText value="#{projeto.nome}"/> <br/>
+            Início: <h:inputText value="#{projeto.inicio}" pt:type="date" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+            <br/>
+            Fim: <h:inputText value="#{projeto.fim}" pt:type="date" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                 </h:inputText>
+            <br/>
+            Professor: <h:selectOneMenu value="#{projeto.professor}">
+            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}"/>
+            </h:selectOneMenu> <br/>
+            <h:commandButton value="Submit" action="#{projetoRepository.salvar(projeto)}"/>
         </h:form>
         <hr />
 
-        <h:dataTable value = "#{professorRepository.all}" var = "professorl"
-                     styleClass = "professorTable"
-                     headerClass = "professorTableHeader"
-                     rowClasses = "professorTableOddRow,professorTableEvenRow">
+        <h:dataTable value = "#{projetoRepository.all}" var = "projetol"
+                     styleClass = "projetoTable"
+                     headerClass = "projetoTableHeader"
+                     rowClasses = "projetoTableOddRow,projetoTableEvenRow">
 
             <h:column>
                 <f:facet name = "header">Nome</f:facet>
-                #{professorl.nome}
+                #{projetol.nome}
             </h:column>
 
             <h:column>
-                <f:facet name = "header">CPF</f:facet>
-                #{professorl.cpf}
+                <f:facet name = "header">Início</f:facet>
+                #{projetol.inicio}
             </h:column>
 
             <h:column>
-                <f:facet name = "header">SIAPE</f:facet>
-                #{professorl.siape}
+                <f:facet name = "header">Fim</f:facet>
+                #{projetol.fim}
             </h:column>
 
             <h:column>
-                <f:facet name = "header">Delete</f:facet>
-                <h:commandButton value = "Delete" action = "#{professorRepository.deletar(professorl)}"  />
+                <f:facet name = "header">Professor</f:facet>
+                #{projetol.professor.nome}
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{projetoRepository.deletar(projetol)}"  />
+                </h:form>
             </h:column>
 
         </h:dataTable>

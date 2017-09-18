@@ -46,8 +46,10 @@
             </h:column>
 
             <h:column>
-                <f:facet name = "header">Delete</f:facet>
-                <h:commandButton value = "Delete" action = "#{alunoRepository.deletar(alunol)}"  />
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{alunoRepository.deletar(alunol)}"  />
+                </h:form>
             </h:column>
 
         </h:dataTable>

@@ -5,6 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +18,7 @@ import java.util.Set;
  */
 
 @Entity
+@ManagedBean
 public class Projeto implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

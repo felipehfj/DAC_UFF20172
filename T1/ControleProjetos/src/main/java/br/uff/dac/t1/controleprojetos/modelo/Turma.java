@@ -5,6 +5,7 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import java.util.Objects;
  */
 
 @Entity
+@ManagedBean
 public class Turma implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
