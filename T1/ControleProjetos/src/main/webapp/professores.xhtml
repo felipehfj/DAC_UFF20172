@@ -15,32 +15,31 @@
             SIAPE: <h:inputText value="#{professor.siape}"/> <br/>
             <h:commandButton value="Submit" action="#{professorRepository.salvar(professor)}"/>
         </h:form>
+        <hr />
 
-        <h:dataTable value = "#{professorRepository.all}" var = "professor"
+        <h:dataTable value = "#{professorRepository.all}" var = "professorl"
                      styleClass = "professorTable"
                      headerClass = "professorTableHeader"
                      rowClasses = "professorTableOddRow,professorTableEvenRow">
 
             <h:column>
                 <f:facet name = "header">Nome</f:facet>
-                #{professor.nome}
+                #{professorl.nome}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">CPF</f:facet>
-                #{professor.cpf}
+                #{professorl.cpf}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">SIAPE</f:facet>
-                #{professor.siape}
+                #{professorl.siape}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">Delete</f:facet>
-                <h:commandButton value = "Delete" action = "#{professorRepository.deletar}"  >
-                    <f:setPropertyActionListener target = "#{professorRepository.getprofessor}" value = "#{professor}" />
-                </h:commandButton>
+                <h:commandButton value = "Delete" action = "#{professorRepository.deletar(professorl)}"  />
             </h:column>
 
         </h:dataTable>

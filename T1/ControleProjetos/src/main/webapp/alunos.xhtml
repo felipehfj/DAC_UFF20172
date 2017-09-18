@@ -18,37 +18,36 @@
         </h:selectOneMenu> <br/>
             <h:commandButton value="Submit" action="#{alunoRepository.salvar(aluno)}"/>
         </h:form>
+        <hr />
 
-        <h:dataTable value = "#{alunoRepository.all}" var = "aluno"
+        <h:dataTable value = "#{alunoRepository.all}" var = "alunol"
                      styleClass = "alunoTable"
                      headerClass = "alunoTableHeader"
                      rowClasses = "alunoTableOddRow,alunoTableEvenRow">
 
             <h:column>
                 <f:facet name = "header">Nome</f:facet>
-                #{aluno.nome}
+                #{alunol.nome}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">CPF</f:facet>
-                #{aluno.cpf}
+                #{alunol.cpf}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">Matricula</f:facet>
-                #{aluno.matricula}
+                #{alunol.matricula}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">Curso</f:facet>
-                #{aluno.curso.nome}
+                #{alunol.curso.nome}
             </h:column>
 
             <h:column>
                 <f:facet name = "header">Delete</f:facet>
-                <h:commandButton value = "Delete" action = "#{alunoRepository.deletar}"  >
-                    <f:setPropertyActionListener target = "#{alunoRepository.getAluno}" value = "#{aluno}" />
-                </h:commandButton>
+                <h:commandButton value = "Delete" action = "#{alunoRepository.deletar(alunol)}"  />
             </h:column>
 
         </h:dataTable>

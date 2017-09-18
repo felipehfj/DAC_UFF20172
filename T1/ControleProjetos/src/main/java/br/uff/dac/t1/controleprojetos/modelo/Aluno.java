@@ -15,9 +15,9 @@ public class Aluno extends Pessoa implements Serializable  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private ECurso curso;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String matricula;
 
     private Double cr;

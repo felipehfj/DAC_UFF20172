@@ -24,6 +24,7 @@ public class AlunoRepository {
         return em.createQuery("SELECT a from Aluno a").getResultList();
     }
 
+    @Transactional
     public Aluno getAluno(Aluno aluno){
         return em.find(Aluno.class, aluno);
     }
