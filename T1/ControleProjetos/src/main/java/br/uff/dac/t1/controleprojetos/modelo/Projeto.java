@@ -5,6 +5,8 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import br.uff.dac.t1.controleprojetos.bean.SampleEntity;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,10 +21,10 @@ import java.util.Set;
 
 @Entity
 @ManagedBean
-public class Projeto implements Serializable{
+public class Projeto implements Serializable, SampleEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String nome;
     private Date inicio;
     private Date fim;
@@ -36,13 +38,6 @@ public class Projeto implements Serializable{
     public Projeto() {
     }
 
-    public Projeto(String nome, Date inicio, Date fim, Professor professor, Set<Aluno> alunos) {
-        this.nome = nome;
-        this.inicio = inicio;
-        this.fim = fim;
-        this.professor = professor;
-        this.alunos = alunos;
-    }
 
     public Professor getProfessor() {
         return professor;
@@ -60,11 +55,11 @@ public class Projeto implements Serializable{
         this.alunos = alunos;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,7 +90,7 @@ public class Projeto implements Serializable{
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 41 * hash + this.id;
+        hash = (int) (41 * hash + this.id);
         hash = 41 * hash + Objects.hashCode(this.nome);
         hash = 41 * hash + Objects.hashCode(this.inicio);
         hash = 41 * hash + Objects.hashCode(this.fim);

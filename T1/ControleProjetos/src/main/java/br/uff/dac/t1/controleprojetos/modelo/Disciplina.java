@@ -5,6 +5,9 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import br.uff.dac.t1.controleprojetos.bean.SampleEntity;
+
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -15,16 +18,14 @@ import java.util.Objects;
  */
 
 @Entity
-public class Disciplina implements Serializable{
+@ManagedBean
+public class Disciplina implements Serializable, SampleEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String nome;
-
-    @ManyToOne
-    private Professor professor;
 
     @OneToOne
     private Turma turma;
@@ -32,33 +33,11 @@ public class Disciplina implements Serializable{
     public Disciplina() {
     }
 
-    public Disciplina(String nome, Professor professor, Turma turma) {
-        this.nome = nome;
-        this.professor = professor;
-        this.turma = turma;
-    }
-
-    public Professor getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
-    }
-
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,10 +49,18 @@ public class Disciplina implements Serializable{
         this.nome = nome;
     }
 
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 59 * hash + this.id;
+        hash = (int) (59 * hash + this.id);
         hash = 59 * hash + Objects.hashCode(this.nome);
         return hash;
     }
@@ -95,7 +82,10 @@ public class Disciplina implements Serializable{
 
     @Override
     public String toString() {
-        return "Disciplina{" + "id=" + id + ", nome=" + nome + '}';
+        return "Disciplina{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", turma=" + turma +
+                '}';
     }
-   
 }

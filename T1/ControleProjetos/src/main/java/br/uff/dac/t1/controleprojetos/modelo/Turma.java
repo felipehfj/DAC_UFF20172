@@ -5,6 +5,8 @@
  */
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import br.uff.dac.t1.controleprojetos.bean.SampleEntity;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,29 +19,21 @@ import java.util.Objects;
 
 @Entity
 @ManagedBean
-public class Turma implements Serializable{
+public class Turma implements Serializable,SampleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private String codigo;
     private String periodo;
     private ETurno turno;
     private String sala;
 
+    @ManyToOne
+    private Professor professor;
+
     @OneToOne
     private Disciplina disciplina;
-
-    public Turma() {
-    }
-
-    public Turma(String codigo, String periodo, ETurno turno, String sala, Disciplina disciplina) {
-        this.codigo = codigo;
-        this.periodo = periodo;
-        this.turno = turno;
-        this.sala = sala;
-        this.disciplina = disciplina;
-    }
 
     public Disciplina getDisciplina() {
         return disciplina;
@@ -49,11 +43,11 @@ public class Turma implements Serializable{
         this.disciplina = disciplina;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -89,10 +83,18 @@ public class Turma implements Serializable{
         this.sala = sala;
     }
 
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + this.id;
+        hash = (int) (23 * hash + this.id);
         hash = 23 * hash + Objects.hashCode(this.codigo);
         hash = 23 * hash + Objects.hashCode(this.periodo);
         hash = 23 * hash + Objects.hashCode(this.turno);
@@ -123,7 +125,14 @@ public class Turma implements Serializable{
 
     @Override
     public String toString() {
-        return "Turma{" + "id=" + id + ", codigo=" + codigo + ", periodo=" + periodo + ", turno=" + turno + ", sala=" + sala + '}';
-    } 
-    
+        return "Turma{" +
+                "id=" + id +
+                ", codigo='" + codigo + '\'' +
+                ", periodo='" + periodo + '\'' +
+                ", turno=" + turno +
+                ", sala='" + sala + '\'' +
+                ", professor=" + professor +
+                ", disciplina=" + disciplina +
+                '}';
+    }
 }

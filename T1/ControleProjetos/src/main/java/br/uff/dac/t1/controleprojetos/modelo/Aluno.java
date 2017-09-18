@@ -1,5 +1,7 @@
 package br.uff.dac.t1.controleprojetos.modelo;
 
+import br.uff.dac.t1.controleprojetos.bean.SampleEntity;
+
 import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,11 +11,11 @@ import java.util.Set;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @ManagedBean
-public class Aluno extends Pessoa implements Serializable  {
+public class Aluno extends Pessoa implements Serializable, SampleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     //@Column(nullable = false)
     private ECurso curso;
@@ -26,13 +28,6 @@ public class Aluno extends Pessoa implements Serializable  {
     private Set<Projeto> projetos;
 
     public Aluno() {
-    }
-
-    public Aluno(ECurso curso, String matricula, Double cr, Set<Projeto> projetos) {
-        this.curso = curso;
-        this.matricula = matricula;
-        this.cr = cr;
-        this.projetos = projetos;
     }
 
     public Set<Projeto> getProjetos() {
@@ -74,7 +69,7 @@ public class Aluno extends Pessoa implements Serializable  {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + id;
+        result = (int) (31 * result + id);
         result = 31 * result + (curso != null ? curso.hashCode() : 0);
         result = 31 * result + (matricula != null ? matricula.hashCode() : 0);
         result = 31 * result + (cr != null ? cr.hashCode() : 0);

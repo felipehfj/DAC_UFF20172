@@ -20,8 +20,10 @@
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
                  </h:inputText>
             <br/>
-            Professor: <h:selectOneMenu value="#{projeto.professor}">
-            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}"/>
+            Professor: <h:selectOneMenu id="professor" value="#{projeto.professor}">
+            <f:converter converterId="generic"/> <!-- linha para adicionar -->
+            <f:selectItem itemLabel="Selecione um professor: " itemValue=""/>
+            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}" converter="generic" />
             </h:selectOneMenu> <br/>
             <h:commandButton value="Submit" action="#{projetoRepository.salvar(projeto)}"/>
         </h:form>
