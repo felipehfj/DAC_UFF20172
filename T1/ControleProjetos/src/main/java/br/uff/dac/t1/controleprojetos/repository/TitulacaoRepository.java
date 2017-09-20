@@ -1,6 +1,6 @@
 package br.uff.dac.t1.controleprojetos.repository;
 
-import br.uff.dac.t1.controleprojetos.modelo.Aluno;
+import br.uff.dac.t1.controleprojetos.modelo.Titulacao;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -10,9 +10,9 @@ import java.util.List;
 
 @ManagedBean
 @RequestScoped
-public class AlunoRepository {
+public class TitulacaoRepository {
 
-    public AlunoRepository() {
+    public TitulacaoRepository() {
     }
 
     @PersistenceContext
@@ -20,22 +20,22 @@ public class AlunoRepository {
     EntityManager em = emf.createEntityManager();
 
     @Transactional
-    public List<Aluno> getAll(){
-        return em.createQuery("SELECT a from Aluno a").getResultList();
+    public List<Titulacao> getAll(){
+        return em.createQuery("SELECT t from Titulacao t").getResultList();
     }
 
     @Transactional
-    public Aluno getAluno(Aluno aluno){
-        return em.find(Aluno.class, aluno);
+    public Titulacao getTitulacao(Titulacao titulacao){
+        return em.find(Titulacao.class, titulacao);
     }
 
-    public String salvar(Aluno aluno){
+    public String salvar(Titulacao titulacao){
         EntityTransaction transaction = em.getTransaction();
 
         try {
 
             transaction.begin();
-            em.persist(aluno);
+            em.persist(titulacao);
             transaction.commit();
 
             return "sucesso";
@@ -47,12 +47,12 @@ public class AlunoRepository {
         }
     }
 
-    public String deletar(Aluno aluno){
+    public String deletar(Titulacao titulacao){
         EntityTransaction transaction = em.getTransaction();
 
         try{
             transaction.begin();
-            em.remove(aluno);
+            em.remove(titulacao);
             transaction.commit();
             return "sucesso";
         }catch (Exception e){
