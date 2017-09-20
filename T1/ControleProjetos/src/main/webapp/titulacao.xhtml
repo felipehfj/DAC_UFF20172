@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <h:body>
+        <h:link value = "Home" outcome = "home.xhtml" />
+
+        <h:form>
+            Nome: <h:inputText value="#{projeto.nome}"/> <br/>
+            Início: <h:inputText value="#{projeto.inicio}" pt:type="date" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:inputText>
+            <br/>
+            Fim: <h:inputText value="#{projeto.fim}" pt:type="date" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                 </h:inputText>
+            <br/>
+            Professor: <h:selectOneMenu id="professor" value="#{projeto.professor}">
+            <f:converter converterId="generic"/> <!-- linha para adicionar -->
+            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}" converter="generic" />
+            </h:selectOneMenu> <br/>
+            Alunos: <h:selectManyListbox id="aluno" value="#{projeto.alunos}">
+                        <f:selectItems value="#{alunoRepository.all}" var="aluno" itemValue="#{aluno}" itemLabel="#{aluno.nome}" converter="generic" />
+                    </h:selectManyListbox>
+            <h:commandButton value="Submit" action="#{projetoRepository.salvar(projeto)}"/>
+        </h:form>
+        <hr />
+
+        <h:dataTable value = "#{projetoRepository.all}" var = "projetol"
+                     styleClass = "projetoTable"
+                     headerClass = "projetoTableHeader"
+                     rowClasses = "projetoTableOddRow,projetoTableEvenRow">
+
+            <h:column>
+                <f:facet name = "header">Nome</f:facet>
+                #{projetol.nome}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Início</f:facet>
+                #{projetol.inicio}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Fim</f:facet>
+                #{projetol.fim}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Professor</f:facet>
+                #{projetol.professor.nome}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Alunos</f:facet>
+                #{projetol.alunos}
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{projetoRepository.deletar(projetol)}"  />
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </h:body>
+</html>
