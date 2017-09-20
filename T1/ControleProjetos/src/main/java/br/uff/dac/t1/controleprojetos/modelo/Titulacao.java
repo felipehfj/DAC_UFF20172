@@ -85,6 +85,8 @@ public class Titulacao implements Serializable, SampleEntity{
         this.ano = ano;
     }
 
+    public ETitulo[] getTitulos(){ return ETitulo.values(); }
+
     @Override
     public int hashCode() {
         int hash = 7;

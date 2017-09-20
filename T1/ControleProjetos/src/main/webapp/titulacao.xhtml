@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <h:body>
+        <h:link value = "Home" outcome = "home.xhtml" />
+
+        <h:form>
+            Titulo: <h:selectOneMenu value="#{titulacao.titulo}">
+            <f:selectItems value="#{titulacao.titulos}" var="titulo" itemValue="#{titulo}" itemLabel="#{titulo.titulo}"/>
+        </h:selectOneMenu> <br/>
+            Área: <h:inputText value="#{titulacao.area}"/> <br/>
+            Instituição: <h:inputText value="#{titulacao.instituicao}"  />
+            <br/>
+            Ano: <h:inputText value="#{titulacao.ano}" pt:type="date" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                 </h:inputText>
+            <br/>
+            Professor: <h:selectOneMenu id="professor" value="#{titulacao.professor}">
+            <f:converter converterId="generic"/> <!-- linha para adicionar -->
+            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}" converter="generic" />
+            </h:selectOneMenu> <br/>
+
+            <h:commandButton value="Submit" action="#{titulacaoRepository.salvar(titulacao)}"/>
+        </h:form>
+        <hr />
+
+        <h:dataTable value = "#{titulacaoRepository.all}" var = "titulacaol"
+                     styleClass = "titulacaoTable"
+                     headerClass = "titulacaoTableHeader"
+                     rowClasses = "titulacaoTableOddRow,titulacaoTableEvenRow">
+
+            <h:column>
+                <f:facet name = "header">Título</f:facet>
+                #{titulacaol.titulo}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Área</f:facet>
+                #{titulacaol.area}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Instituição</f:facet>
+                #{titulacaol.instituicao}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Ano</f:facet>
+                #{titulacaol.ano}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Professor</f:facet>
+                #{titulacaol.professor.nome}
+            </h:column>
+
+            <h:column>
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{titulacaoRepository.deletar(titulacaol)}"  />
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </h:body>
+</html>
