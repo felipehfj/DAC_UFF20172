@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <h:body>
+        <h:link value = "Home" outcome = "home.xhtml" />
+
+        <h:form>
+            Nome da disciplimna: <h:inputText value="#{disciplina.nome}"/> <br/>
+            Código da disciplimna: <h:inputText value="#{disciplina.codigo}"/> <br/>
+
+            <br/>
+            <h:commandButton value="Submit" action="#{disciplinaRepository.salvar(disciplina)}"/>
+        </h:form>
+        <hr />
+
+        <h:dataTable value = "#{disciplinaRepository.all}" var = "disciplina2"
+                     styleClass = "alunoTable"
+                     headerClass = "alunoTableHeader"
+                     rowClasses = "alunoTableOddRow,alunoTableEvenRow">
+
+            <h:column>
+                <f:facet name = "header">ID</f:facet>
+                #{disciplina2.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Nome</f:facet>
+                #{disciplina2.nome}
+            </h:column>
+            <h:column>
+                <f:facet name = "header">Código</f:facet>
+                #{disciplina2.codigo}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Turma</f:facet>
+                #{disciplina2.turma}
+            </h:column>
+
+
+
+
+            <h:column>
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{disciplinaRepository.deletar(disciplina2)}"  />
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </h:body>
+</html>

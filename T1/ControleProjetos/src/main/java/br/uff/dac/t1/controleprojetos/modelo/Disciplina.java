@@ -26,9 +26,11 @@ public class Disciplina implements Serializable, SampleEntity{
     private Long id;
 
     private String nome;
+    private String codigo;
 
     @OneToOne
     private Turma turma;
+
 
     public Disciplina() {
     }
@@ -56,6 +58,10 @@ public class Disciplina implements Serializable, SampleEntity{
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
+
+    public String getCodigo() {return codigo;}
+
+    public void setCodigo(String codigo) {this.codigo = codigo;}
 
     @Override
     public int hashCode() {
