@@ -91,6 +91,8 @@ public class Turma implements Serializable,SampleEntity {
         this.professor = professor;
     }
 
+    public ETurno[] getTurnos(){return ETurno.values();}
+
     @Override
     public int hashCode() {
         int hash = 3;

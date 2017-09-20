@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" >
+
+    <h:body>
+        <h:link value = "Home" outcome = "home.xhtml" />
+
+        <h:form>
+            Código da Turma: <h:inputText value="#{turma.codigo}"/> <br/>
+            Peiodo da turma: <h:inputText value="#{turma.periodo}"/> <br/>
+            Sala da turma: <h:inputText value="#{turma.sala}"/> <br/>
+
+            Professor: <h:selectOneMenu id="professor" value="#{turma.professor}">
+            <f:converter converterId="generic"/> <!-- linha para adicionar -->
+            <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}" converter="generic" />
+        </h:selectOneMenu> <br/>
+
+
+            Disciplina: <h:selectOneMenu id="disciplina" value="#{turma.disciplina}">
+            <f:converter converterId="generic"/> <!-- linha para adicionar -->
+            <f:selectItems value="#{disciplinaRepository.all}" var="disciplina" itemValue="#{disciplina}" itemLabel="#{disciplina.codigo}" converter="generic" />
+        </h:selectOneMenu> <br/>
+
+            Turno: <h:selectOneMenu id="turno" value="#{turma.turno}">
+            <f:selectItems value="#{turma.turnos}" var="turno" itemValue="#{turno}" itemLabel="#{turno.turno}" />
+        </h:selectOneMenu> <br/>
+
+
+
+            <br/>
+            <h:commandButton value="Submit" action="#{turmaRepository.salvar(turma)}"/>
+        </h:form>
+        <hr />
+
+        <h:dataTable value = "#{turmaRepository.all}" var = "turma2"
+                     styleClass = "alunoTable"
+                     headerClass = "alunoTableHeader"
+                     rowClasses = "alunoTableOddRow,alunoTableEvenRow">
+
+            <h:column>
+                <f:facet name = "header">ID</f:facet>
+                #{turma2.id}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">codigo</f:facet>
+                #{turma2.codigo}
+            </h:column>
+            <h:column>
+                <f:facet name = "header">turno</f:facet>
+                #{turma2.turno.turno}
+            </h:column>
+            <h:column>
+                <f:facet name = "header">sala</f:facet>
+                #{turma2.sala}
+            </h:column>
+
+
+            <h:column>
+                <f:facet name = "header">Disciplina</f:facet>
+                #{turma2.disciplina.nome}
+            </h:column>
+
+
+            <h:column>
+                <f:facet name = "header">professor</f:facet>
+                #{turma2.professor.nome}
+            </h:column>
+
+
+
+
+            <h:column>
+                <h:form>
+                    <f:facet name = "header">Delete</f:facet>
+                    <h:commandButton value = "Delete" action = "#{disciplinaRepository.deletar(disciplina2)}"  />
+                </h:form>
+            </h:column>
+
+        </h:dataTable>
+
+    </h:body>
+</html>
