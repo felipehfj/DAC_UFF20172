@@ -22,9 +22,11 @@
             <br/>
             Professor: <h:selectOneMenu id="professor" value="#{projeto.professor}">
             <f:converter converterId="generic"/> <!-- linha para adicionar -->
-            <f:selectItem itemLabel="Selecione um professor: " itemValue=""/>
             <f:selectItems value="#{professorRepository.all}" var="professor" itemValue="#{professor}" itemLabel="#{professor.nome}" converter="generic" />
             </h:selectOneMenu> <br/>
+            Alunos: <h:selectManyListbox id="aluno" value="#{projeto.alunos}">
+                        <f:selectItems value="#{alunoRepository.all}" var="aluno" itemValue="#{aluno}" itemLabel="#{aluno.nome}" converter="generic" />
+                    </h:selectManyListbox>
             <h:commandButton value="Submit" action="#{projetoRepository.salvar(projeto)}"/>
         </h:form>
         <hr />
@@ -52,6 +54,11 @@
             <h:column>
                 <f:facet name = "header">Professor</f:facet>
                 #{projetol.professor.nome}
+            </h:column>
+
+            <h:column>
+                <f:facet name = "header">Alunos</f:facet>
+                #{projetol.alunos}
             </h:column>
 
             <h:column>

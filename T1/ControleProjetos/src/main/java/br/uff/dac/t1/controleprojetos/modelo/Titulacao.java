@@ -37,14 +37,6 @@ public class Titulacao implements Serializable, SampleEntity{
     public Titulacao() {
     }
 
-    public Titulacao(ETitulo titulo, String instituicao, String area, String ano, Professor professor) {
-        this.titulo = titulo;
-        this.instituicao = instituicao;
-        this.area = area;
-        this.ano = ano;
-        this.professor = professor;
-    }
-
     public Professor getProfessor() {
         return professor;
     }
