@@ -110,10 +110,7 @@ public class Titulacao implements Serializable, SampleEntity{
             return false;
         }
         final Titulacao other = (Titulacao) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
 
     @Override
